@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-      <h1>Studio Ghibi Films</h1>
+      <h2>Studio Ghibi Films</h2>
     <div class="main-container">
       <film-list :films='films'></film-list>
       <film-detail :film='selectedFilm'></film-detail>
-      <watchlist></watchlist>
-    </div>
+      <watchlist :watchList = "watchlist"></watchlist>
+       <!-- why is this not working -->
+   </div>
   </div>
 </template>
 
@@ -13,6 +14,7 @@
 import {eventBus} from './main.js'
 import FilmList from './components/FilmList.vue';
 import FilmDetail from './components/FilmDetail.vue'
+import WatchList from './components/WatchList.vue'
 
 export default {
   name: 'app',
@@ -23,8 +25,8 @@ export default {
     };
   },
   computed: {
-  watchlist: function() {
-    return this.film.filter(film => film.addWatchList);
+  watchList: function() {
+    return this.films.filter(film => film.addWatchList);
   }
 },
   mounted(){
@@ -42,12 +44,21 @@ export default {
       this.selectedFilm = film;}),
 
     eventBus.$on("watchlist-added",(film) =>{
-       this.addWatchList(film)})
+       this.addToWatchList(film)})
     },
 
   components: {
     "film-list": FilmList,
-    "filmDetail": FilmDetail
+    "filmDetail": FilmDetail,
+    "watchlist": WatchList
+  },
+
+  methods:{
+    addToWatchList: function(film){
+      const index = this.films.indexOf(film);
+      this.films[index].addWatchList = true;
+
+    }
   }
 }
 </script>

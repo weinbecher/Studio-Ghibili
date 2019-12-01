@@ -1,9 +1,8 @@
 <template lang="html">
   <div class="filmlistitem">
-    <li v-on:click = "handleClick">{{film.title}}
+    <li>{{film.title}}
       <button v-on:click="handleClick"> ...</button>
       <button v-on:click="addWatchList"> + </button>
-
 </li>
 
   </div>
