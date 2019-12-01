@@ -4,7 +4,7 @@
     <div class="main-container">
       <film-list :films='films'></film-list>
       <film-detail :film='selectedFilm'></film-detail>
-      <watchlist :watchList = "watchlist"></watchlist>
+      <watchlist :watchlist = "watchList"></watchlist>
        <!-- why is this not working -->
    </div>
   </div>

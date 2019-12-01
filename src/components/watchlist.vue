@@ -1,7 +1,8 @@
 <template lang="html">
 <div class="">
-  <h2>WatchList</h2>
   <ul>
+    <h3 v-if = "watchlist">WatchList</h3>
+    <!-- why is this not working? -->
     <li v-for="(film, index) in watchlist"  :film="film" :key="index">
       <p v-on:click="handleClick">
         {{ film.title }}
@@ -13,6 +14,7 @@
 </template>
 
 <script>
+import { eventBus } from '../main.js'
 export default {
   name:"watchlist",
   props:["watchlist"],
@@ -20,6 +22,7 @@ export default {
     handleClick(){
       eventBus.$emit('film-selected', this.film);
     }
+    //not working
   }
 }
 </script>
